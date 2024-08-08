@@ -1,3 +1,4 @@
+import pytest
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -8,15 +9,20 @@ from settings import Settings
 
 class TestRegistration:
 
-    def test_registration_valid_data(self, driver):
+    @pytest.fixture(autouse=True)
+    def generation(self):
+        self.user = {'name': 'Natali', 'email': {Help.generate_valid_email()}}
+        return self.user
+
+    def test_registration_valid_data(self, driver, generation):
         driver.find_element(*StellarBurgersLocators.LOGIN_BUTTON_MAIN).click()
         driver.find_element(*StellarBurgersLocators.LOGIN_BUTTON_FORM_REGISTRATION).click()
         WebDriverWait(driver, Settings.WAIT_TIME).until(EC.visibility_of_element_located
                                                         (StellarBurgersLocators.REGISTRATION_FORM))
-        driver.find_element(*StellarBurgersLocators.REGISTRATION_FORM_NAME).send_keys("Natali")
-        driver.find_element(*StellarBurgersLocators.REGISTRATION_FORM_EMAIL).send_keys(Help.generate_valid_email())
-        driver.find_element(*StellarBurgersLocators.REGISTRATION_FORM_PASSWORD).send_keys(Help.
-                                                                                          generate_valid_password())
+        driver.find_element(*StellarBurgersLocators.REGISTRATION_FORM_NAME).send_keys(self.user['name'])
+        driver.find_element(*StellarBurgersLocators.REGISTRATION_FORM_EMAIL).send_keys(self.user['email'])
+        (driver.find_element(*StellarBurgersLocators.REGISTRATION_FORM_PASSWORD).send_keys
+         (Help.generate_valid_password()))
         driver.find_element(*StellarBurgersLocators.REGISTRATION_BUTTON).click()
         WebDriverWait(driver, Settings.WAIT_TIME).until(EC.visibility_of_element_located
                                                         (StellarBurgersLocators.LOGIN_BUTTON_MAIN_FORM))
@@ -28,8 +34,8 @@ class TestRegistration:
         driver.find_element(*StellarBurgersLocators.LOGIN_BUTTON_FORM_REGISTRATION).click()
         WebDriverWait(driver, Settings.WAIT_TIME).until(EC.visibility_of_element_located
                                                         (StellarBurgersLocators.REGISTRATION_FORM))
-        driver.find_element(*StellarBurgersLocators.REGISTRATION_FORM_NAME).send_keys("Natali")
-        driver.find_element(*StellarBurgersLocators.REGISTRATION_FORM_EMAIL).send_keys(Help.generate_valid_email())
+        driver.find_element(*StellarBurgersLocators.REGISTRATION_FORM_NAME).send_keys(self.user['name'])
+        driver.find_element(*StellarBurgersLocators.REGISTRATION_FORM_EMAIL).send_keys(self.user['email'])
         (driver.find_element(*StellarBurgersLocators.REGISTRATION_FORM_PASSWORD).send_keys
          (Help.generate_not_valid_password()))
         driver.find_element(*StellarBurgersLocators.REGISTRATION_FORM_NAME).click()
