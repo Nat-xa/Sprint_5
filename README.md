@@ -1,1 +1,19 @@
 "#Sprint_5" 
+Проверка приложения Stellar Burgers включает:
+1) Проверка регистрации:
+test_registration_valid_data
+test_registration_not_valid_data
+2) Проверка входа
+test_login_button_main
+test_login_button_personal_account
+test_login_button_form_registration
+test_login_button_form_password_recovery
+3) Проверка перехода в личный кабинет и из него в конструктор
+test_personal_account
+test_builder_from_personal_account
+4) Проверка выхода из аккаунта
+test_logout
+5) Проверка раздела "Конструктор"
+test_builder_section_toppings
+test_builder_section_bread
+test_builder_section_sauces
