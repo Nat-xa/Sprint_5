@@ -33,8 +33,18 @@ class StellarBurgersLocators:
     SECTION_SAUCES = (By.XPATH, ".//span[text() = 'Соусы']")
     # Раздел "Начинки"
     SECTION_TOPPINGS = (By.XPATH, ".//span[text() = 'Начинки']")
-    # Индикатор нажатия таба в Конструкторе
-    TAB_INDICATOR = (By.XPATH, ".//div[contains(@class, 'tab_tab_type_current__2BEPc')]")
+    # Индикатор активности таба "Начинки"
+    TAB_INDICATOR_TOPPINGS = (By.XPATH, ".//span[text() = 'Начинки']/parent::*[contains(@class, 'current')]")
+    # Заголовок "Начинки"
+    TITLE_TOPPINGS = (By.XPATH, ".//h2[text() = 'Начинки']")
+    # Индикатор активности таба "Булки"
+    TAB_INDICATOR_BREAD = (By.XPATH, ".//span[text() = 'Булки']/parent::*[contains(@class, 'current')]")
+    # Заголовок "Булки"
+    TITLE_BREAD = (By.XPATH, ".//h2[text() = 'Булки']")
+    # Индикатор активности таба "Соусы"
+    TAB_INDICATOR_SAUCES = (By.XPATH, ".//span[text() = 'Соусы']/parent::*[contains(@class, 'current')]")
+    # Заголовок "Соусы"
+    TITLE_SAUCES = (By.XPATH, ".//h2[text() = 'Соусы']")
     # Поле ввода имени в форме регистрации
     REGISTRATION_FORM_NAME = (By.XPATH, ".//fieldset[1]//input")
     # Поле ввода e-mail в форме регистрации
